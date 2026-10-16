@@ -231,10 +231,30 @@ para VS Code. Si configuraste el reenvío del puerto `5432`, usa el host
 `db`. En ambos casos, usa el puerto `5432`, la base de datos `chochos` y el
 usuario y la contraseña `chochos`.
 
-### Paso 8: adaptar el ejemplo
+### Paso 8: agregar categorías
 
-Repite los pasos 4 a 7 y adapta el modelo, el repositorio y el controlador a
-otra tabla de tu proyecto.
+Como segundo ejemplo, se agregó la entidad `Categoria` con los campos `id`,
+`nombre` y `descripcion`. Su repositorio y controlador siguen el mismo patrón
+que los de productos:
+
+- `demo/src/main/java/com/example/demo/model/Categoria.java`
+- `demo/src/main/java/com/example/demo/repo/CategoriaRepository.java`
+- `demo/src/main/java/com/example/demo/categoria/CategoriaController.java`
+
+El controlador permite crear y consultar categorías en `/categorias`. Si la
+aplicación ya estaba ejecutándose, reiníciala para que cargue el controlador
+nuevo. Después, registra una categoría y consulta la lista:
+
+```bash
+curl -X POST http://localhost:8080/categorias \
+    -H "Content-Type: application/json" \
+    -d '{"nombre":"Suplementos","descripcion":"Nutrición deportiva"}'
+
+curl http://localhost:8080/categorias
+```
+
+Para adaptar el ejemplo a otra tabla, repite el patrón de entidad, repositorio
+y controlador con los campos y rutas que necesite tu proyecto.
 
 ## Información útil
 
